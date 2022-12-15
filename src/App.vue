@@ -1,10 +1,50 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <v-app>
+    <v-app-bar
+      app
+      color="brown lighten-1"
+      dark
+      elevate-on-scroll
+    >
+      <v-toolbar-title>WhatsApp</v-toolbar-title>
+
+      <template v-slot:extension>
+        <v-tabs
+          grow
+          background-color="brown lighten-1"
+          dark
+        >
+          <v-tab v-for="(link, index) in headerLinks" :key="index">
+            <router-link :to=link.url>
+              {{ link.text }}
+            </router-link>
+          </v-tab>
+        </v-tabs> 
+      </template>
+    </v-app-bar>
+    
+    <v-main>
+      <router-view/>
+    </v-main>
+
+    <v-footer padless>
+      <v-col>
+        <p>{{ today.getFullYear() }} - Luigi Moraes</p>
+      </v-col>
+    </v-footer>
+  </v-app>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+
+const today = ref(new Date());
+const headerLinks = ref([
+  { url: '/', text: 'Conversas' },
+  { url: '/status', text: 'Status' },
+  { url: '/calls', text: 'Chamadas' }
+]);
+</script>
 
 <style>
 #app {
