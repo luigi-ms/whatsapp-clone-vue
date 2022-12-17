@@ -3,6 +3,7 @@ import MessagesView from '../views/MessagesView.vue'
 import StatusesView from '../views/StatusesView.vue'
 import CallsView from '../views/CallsView.vue'
 import MainPages from '../views/MainPages.vue'
+import ContactsView from '../views/ContactsView.vue'
 
 const routes = [
   {
@@ -31,7 +32,7 @@ const routes = [
   {
     path: '/contacts',
     name: 'contacts',
-    component: {}
+    component: ContactsView
   }
 ]
 

@@ -11,9 +11,8 @@
         <template v-slot:activator="{ props }">
           <v-btn
             theme="dark"
-            icon="mdi-home"
+            icon="mdi-dots-vertical"
             v-bind="props">
-            Menu
           </v-btn>
         </template>
 
