@@ -2,22 +2,36 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MessagesView from '../views/MessagesView.vue'
 import StatusesView from '../views/StatusesView.vue'
 import CallsView from '../views/CallsView.vue'
+import MainPages from '../views/MainPages.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'messages',
-    component: MessagesView
+    name: 'main',
+    redirect: '/messages',
+    component: MainPages,
+    children: [
+      {
+        path: '/messages',
+        name: 'messages',
+        component: MessagesView
+      },
+      {
+        path: '/status',
+        name: 'statuses',
+        component: StatusesView
+      },
+      {
+        path: '/calls',
+        name: 'calls',
+        component: CallsView
+      }
+    ]
   },
   {
-    path: '/status',
-    name: 'statuses',
-    component: StatusesView
-  },
-  {
-    path: '/calls',
-    name: 'calls',
-    component: CallsView
+    path: '/contacts',
+    name: 'contacts',
+    component: {}
   }
 ]
 
