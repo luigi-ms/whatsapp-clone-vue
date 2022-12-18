@@ -110,6 +110,5 @@ a.headers { color: white; }
   padding-right: 2vw;
   display: flex; 
   justify-content: flex-end;
-  border: 1px solid black;
 }
 </style>
