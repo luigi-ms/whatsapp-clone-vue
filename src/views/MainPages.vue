@@ -46,11 +46,20 @@
     <v-main>
       <router-view/>
     </v-main>
+
+    <v-footer id="floatingBtn">
+      <v-btn fab icon>
+        <router-link :to=currentRoute.url>
+          <v-icon :icon=currentRoute.icon />
+        </router-link>
+      </v-btn>
+    </v-footer>
   </v-app>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { ref, watch } from 'vue';
 
 const headerLinks = ref([
   { url: '/', text: 'Conversas' },
@@ -63,10 +72,42 @@ const menuLinks = ref([
   { url: '/', text: 'Nova transmissão' },
   { url: '/', text: 'Mensagens favoritas' },
   { url: '/', text: 'Configurações' }
-]); 
+]);
+
+const floatingLinks = ref([
+  { 
+    url: '/contacts', 
+    name: 'messages', 
+    icon: 'mdi-message-text' 
+  },
+  { url: '/', name: 'statuses', icon: 'mdi-camera' },
+  { url: '/', name: 'calls', icon: 'mdi-message-text' }
+]);
+
+let currentRoute = ref({ 
+  url: floatingLinks.value[0].url, 
+  icon: floatingLinks.value[0].icon
+});
+
+let router = useRouter();
+
+watch(() => router.name, rname => {
+  floatingLinks.value.forEach(fl => {
+    if(fl.name === rname){
+      currentRoute.value = fl;
+    }
+  });
+});
 </script>
 
 <style scoped>
 a { color: black; }
+
 a.headers { color: white; }
+
+#floatingBtn {
+  padding: 2vw;
+  display: flex; 
+  justify-content: flex-end;
+}
 </style>
