@@ -47,55 +47,54 @@
       <router-view/>
     </v-main>
 
-    <v-footer id="floatingBtn">
-      <v-btn fab icon>
+    <div id="floatingBtn">
+      <v-btn 
+        color="brown lighten-1"
+        icon 
+        size="large">
         <router-link :to=currentRoute.url>
-          <v-icon :icon=currentRoute.icon />
+          <v-icon 
+            :icon=currentRoute.icon 
+            color="white" />
         </router-link>
       </v-btn>
-    </v-footer>
+    </div>
   </v-app>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { ref, watch } from 'vue';
 
 const headerLinks = ref([
   { url: '/', text: 'Conversas' },
   { url: '/status', text: 'Status' },
   { url: '/calls', text: 'Chamadas' }
-]);
-
-const menuLinks = ref([
+]),
+  menuLinks = ref([
   { url: '/', text: 'Novo grupo' },
   { url: '/', text: 'Nova transmissão' },
   { url: '/', text: 'Mensagens favoritas' },
   { url: '/', text: 'Configurações' }
-]);
-
-const floatingLinks = ref([
+]),
+  floatingLinks = ref([
   { 
     url: '/contacts', 
     name: 'messages', 
     icon: 'mdi-message-text' 
   },
   { url: '/', name: 'statuses', icon: 'mdi-camera' },
-  { url: '/', name: 'calls', icon: 'mdi-message-text' }
-]);
-
-let currentRoute = ref({ 
+  { url: '/', name: 'calls', icon: 'mdi-phone-plus' }
+]),
+  currentRoute = ref({ 
   url: floatingLinks.value[0].url, 
   icon: floatingLinks.value[0].icon
-});
-
-let router = useRouter();
+}),
+  router = useRoute();
 
 watch(() => router.name, rname => {
   floatingLinks.value.forEach(fl => {
-    if(fl.name === rname){
-      currentRoute.value = fl;
-    }
+    if(fl.name === rname){ currentRoute.value = fl; }
   });
 });
 </script>
@@ -106,8 +105,11 @@ a { color: black; }
 a.headers { color: white; }
 
 #floatingBtn {
-  padding: 2vw;
+  position: sticky;
+  bottom: 100px;
+  padding-right: 2vw;
   display: flex; 
   justify-content: flex-end;
+  border: 1px solid black;
 }
 </style>
