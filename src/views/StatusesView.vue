@@ -17,21 +17,6 @@
       :key="i"
       :contactName=seen.name
       :lastStatus=seen.time />
-    <v-list-item id="silencedStatus" tag="li">
-      <h3>Atualizações silenciadas</h3>
-      <v-expansion-panels>
-        <v-expansion-panel
-          v-for="(silenced, index) in silencedStatus"
-          :key="index"
-          title=" ">
-          <v-expansion-panel-text>
-            <status-preview
-            :contactName=silenced.name
-            :lastStatus=silenced.time />
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-list-item>
     <v-list-item tag="li">
       <v-divider></v-divider>
     </v-list-item>
@@ -50,27 +35,13 @@ const seenStatus = ref([
 const newStatuses = ref([
   { name: 'Beltrano', time: '09:00' },
 ]);
-
-const silencedStatus = ref([
-  { name: 'Luigi', time: '13:00' },
-]);
 </script>
 
 <style scoped>
-li { padding: 0; }
+li { margin-bottom: 1vh; }
 
 h3 { 
   font-size: 0.8rem; 
   color: #546E7A;
-}
-
-#silencedStatus {
-  display: flex;
-  justify-content: space-between;
-}
-
-#silencedStatus > h3 { 
-display: inline; 
-border: 1px solid black;
 }
 </style>

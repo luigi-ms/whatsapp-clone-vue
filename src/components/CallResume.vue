@@ -12,22 +12,55 @@
         </v-avatar>
       </v-col>
       <v-col cols="6" class="mainInfo">
-        <h3>Fulano</h3>
-        <span>Última mensagem</span>
+        <h3>{{ contactName }}</h3>
+        <span>
+          <v-icon 
+            :icon="receivedIcon"
+            :color="callHappenedColor" />
+          {{ time }}
+        </span>
       </v-col>
       <v-col cols="4" class="additionalInfo">
         <v-row justify="end">
-          <span>16:20</span>
-        </v-row>
-        <v-row justify="end">
-          <v-icon 
-            icon="mdi-pin" 
+          <v-icon
+            size="large"
+            :icon="callTypeIcon" 
             color="grey" />
         </v-row>
       </v-col>
     </v-row>
   </v-list-item>
 </template>
+
+<script setup>
+import { defineProps, computed } from 'vue';
+
+const props = defineProps({
+  contactName: String,
+  time: String,
+  callType: String,
+  wasReceived: Boolean,
+  hasHappened: Boolean
+});
+
+const callTypeIcon = computed(() => {
+  return (props.callType === "phone")
+    ? "mdi-phone"
+    : "mdi-video";
+});
+
+const receivedIcon = computed(() => {
+  return (props.wasReceived) 
+    ? "mdi-arrow-bottom-left"
+    : "mdi-arrow-top-right";
+});
+
+const callHappenedColor = computed(() => {
+  return (props.hasHappened)
+    ? "green"
+    : "red";
+});
+</script>
 
 <style scoped>
 .mainInfo {

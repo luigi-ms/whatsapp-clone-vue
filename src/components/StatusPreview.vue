@@ -6,7 +6,7 @@
           color="secondary" 
           size="x-large">
           <v-icon 
-            icon="mdi-account-circle" 
+            icon="mdi-image-off" 
             size="x-large"
             color="white" />
         </v-avatar>

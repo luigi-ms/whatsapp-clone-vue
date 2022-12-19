@@ -12,12 +12,12 @@
         </v-avatar>
       </v-col>
       <v-col cols="6" class="mainInfo">
-        <h3>Fulano</h3>
-        <span>Última mensagem</span>
+        <h3>{{ contactName }}</h3>
+        <span>{{ lastMessage.text }}</span>
       </v-col>
       <v-col cols="4" class="additionalInfo">
         <v-row justify="end">
-          <span>16:20</span>
+          <span>{{ lastMessage.time }}</span>
         </v-row>
         <v-row justify="end">
           <v-icon 
@@ -28,6 +28,15 @@
     </v-row>
   </v-list-item>
 </template>
+
+<script setup>
+import { defineProps } from 'vue';
+
+defineProps({
+  contactName: String,
+  lastMessage: Object
+});
+</script>
 
 <style scoped>
 .mainInfo {
