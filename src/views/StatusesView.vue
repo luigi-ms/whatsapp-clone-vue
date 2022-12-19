@@ -1,35 +1,36 @@
 <template>
-  <v-list tag="ul" density="compact">
+  <v-list tag="ul">
     <status-preview lastStatus="16:20" />
     <v-list-item tag="li">
       <h3>Atualizações recentes</h3>
-      <v-list tag="ul">
-        <status-preview 
-          v-for="(newStatus, i) in newStatuses"
-          :key="i"
-          :contactName=newStatus.name
-          :lastStatus=newStatus.time />
-      </v-list>
     </v-list-item>
+    <status-preview 
+      v-for="(newStatus, i) in newStatuses"
+      :key="i"
+      :contactName=newStatus.name
+      :lastStatus=newStatus.time />
     <v-list-item tag="li">
       <h3>Atualizações vistas</h3>
-      <v-list tag="ul">
-        <status-preview
-          v-for="(seen, i) in seenStatus"
-          :key="i"
-          :contactName=seen.name
-          :lastStatus=seen.time />
-      </v-list>
     </v-list-item>
-    <v-list-item tag="li">
+    <status-preview
+      v-for="(seen, i) in seenStatus"
+      :key="i"
+      :contactName=seen.name
+      :lastStatus=seen.time />
+    <v-list-item id="silencedStatus" tag="li">
       <h3>Atualizações silenciadas</h3>
-      <v-list tag="ul">
-        <status-preview
-          v-for="(silenced, i) in silencedStatus"
-          :key="i"
-          :contactName=silenced.name
-          :lastStatus=silenced.time />
-      </v-list>
+      <v-expansion-panels>
+        <v-expansion-panel
+          v-for="(silenced, index) in silencedStatus"
+          :key="index"
+          title=" ">
+          <v-expansion-panel-text>
+            <status-preview
+            :contactName=silenced.name
+            :lastStatus=silenced.time />
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-list-item>
     <v-list-item tag="li">
       <v-divider></v-divider>
@@ -58,5 +59,18 @@ const silencedStatus = ref([
 <style scoped>
 li { padding: 0; }
 
-h3 { font-size: 0.8rem; }
+h3 { 
+  font-size: 0.8rem; 
+  color: #546E7A;
+}
+
+#silencedStatus {
+  display: flex;
+  justify-content: space-between;
+}
+
+#silencedStatus > h3 { 
+display: inline; 
+border: 1px solid black;
+}
 </style>
