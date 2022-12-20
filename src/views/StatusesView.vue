@@ -41,7 +41,6 @@ const newStatuses = ref([
 li { margin-bottom: 1vh; }
 
 h3 { 
-  font-size: 0.8rem; 
   color: #546E7A;
 }
 </style>

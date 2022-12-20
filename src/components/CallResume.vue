@@ -13,7 +13,7 @@
       </v-col>
       <v-col cols="6" class="mainInfo">
         <h3>{{ contactName }}</h3>
-        <span>
+        <span class="subHeader">
           <v-icon 
             :icon="receivedIcon"
             :color="callHappenedColor" />
@@ -71,6 +71,4 @@ const callHappenedColor = computed(() => {
 .additionalInfo { padding-right: 8vw; }
 
 .mainInfo, .additionalInfo { font-size: 0.8rem; }
-
-.mainInfo h3 { font-size: 0.9rem; }
 </style>

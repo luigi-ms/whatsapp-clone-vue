@@ -13,7 +13,7 @@
       </v-col>
       <v-col cols="6" class="mainInfo">
         <h4>{{ contactName }}</h4>
-        <span>{{ lastStatus }}</span>
+        <span class="subHeader">{{ lastStatus }}</span>
       </v-col>
       <v-col 
         v-show="isMyStatus"
@@ -34,7 +34,7 @@ import { defineProps, computed } from 'vue';
 const props = defineProps({
   contactName: {
     type: String,
-    default: "Meu Status"
+    default: "Meu status"
   },
   lastStatus: {
     type: String,
@@ -43,7 +43,7 @@ const props = defineProps({
 });
 
 const isMyStatus = computed(() => {
-  return props.contactName === "Meu Status";
+  return props.contactName === "Meu status";
 });
 </script>
 
@@ -56,9 +56,6 @@ const isMyStatus = computed(() => {
 .additionalInfo { padding-right: 8vw; }
 
 .mainInfo, .additionalInfo { font-size: 0.8rem; }
-
-.mainInfo > h4 { font-size: 0.9rem; }
-.mainInfo > span { color: #546E7A; }
 
 .myButton {
   display: flex;

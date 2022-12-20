@@ -1,6 +1,6 @@
 <template>
   <v-list tag="ul" density="compact">
-    <message-box 
+    <chat-preview 
       v-for="(msg, i) in messages"
       :key="i"
       :contactName=msg.contact
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import MessageBox from '../components/MessageBox.vue';
+import ChatPreview from '../components/ChatPreview.vue';
 import { ref } from 'vue';
 
 const messages = ref([

@@ -27,5 +27,9 @@ const today = ref(new Date());
   color: #2c3e50;
 }
 
+h3, h4 { font-size: 0.8rem; }
+
+span.subHeader { color: #546E7A; }
+
 a { text-decoration: none; }
 </style>
